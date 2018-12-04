@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lyf.hotelserver.dao.HotelDao">
+    <select id="getHotelByHotelId" resultMap="hotel" parameterType="java.lang.String">
+        SELECT
+         room_id,room_type,room_price,room_picture_path,is_book,user_id
+        FROM table_room h
+        where
+          h.roomId = #{hotelId}
+    </select>
+    <resultMap id="hotel" type="cn.lyf.hotelserver.entity.Hotel" autoMapping="true">
+        <id column="room_id" property="roomId"/>
+        <result column="room_type" property="roomType"/>
+        <result column="room_price" property="roomPrice"/>
+        <result column="room_picture_path" property="roomPicturePath"/>
+        <result column="is_book" property="isBook"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+    <!--<resultMap type="com.foo.easybuy.pojo.Order" id="orderAndDetailsMap" autoMapping="true">
+        <id column="orderId" property="id"/>
+        <collection property="orderDetails" ofType="com.foo.easybuy.pojo.OrderDetail" autoMapping="true">
+            <id column="orderDetailId" property="id"/>
+            <result column="orderDetailCost" property="cost"/>
+            <association property="product" javaType="com.foo.easybuy.pojo.Product" autoMapping="true">
+                <id column="productId" property="id"/>
+            </association>
+        </collection>
+    </resultMap>-->
+    <select id="findAllHotels" resultMap="hotel">
+       SELECT
+         room_id,room_type,room_price,room_picture_path,is_book,user_id
+        FROM table_room h
+    </select>
+
+    <select id="getHotelByUserName" resultMap="hotel" parameterType="java.lang.String">
+        SELECT
+         room_id,room_type,room_price,room_picture_path,is_book,u.user_id
+        FROM table_room h,table_user u
+        where
+          h.user_id = u.user_id AND u.user_name = #{userName}
+    </select>
+
+    <insert id="addHotel" useGeneratedKeys="true" keyProperty="id">
+        insert into table_room(room_id,room_type,room_price,room_picture_path,is_book,user_id)
+        values(#{roomId},#{roomType},#{roomPrice},#{roomPicturePath},#{isBook},#{userId})
+    </insert>
+
+    <update id="updateHotel">
+        UPDATE table_room set user_id = #{userId},is_book = #{isBook} where room_id = #{roomId}
+    </update>
+</mapper>
