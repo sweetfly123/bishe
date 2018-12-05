@@ -1,12 +1,12 @@
 spring:
   application:
     name: static-resource
-  zipkin:
-    base-url: http://localhost:8020
-  mvc:
-    static-path-pattern: /resources/**
-  resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${web.upload-path}
+#  zipkin:
+#    base-url: http://localhost:8020
+#  mvc:
+#    static-path-pattern: /resources/**
+#  resources:
+#    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${web.upload-path}
 
 server:
   port: 8004
@@ -16,14 +16,14 @@ security:
     resource:
       user-info-uri: http://localhost:8002/auth/user      #内置有user对象的地址，才能获取到同一个token
       prefer-token-info: false
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${eureka.host:localhost}:${eureka.port:8001}/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${eureka.host:localhost}:${eureka.port:8001}/eureka/
 
-# 自定义文件上传路径
-web:
-  upload-path: D:/DevelopPhotos/
+## 自定义文件上传路径
+#web:
+#  upload-path: D:/DevelopPhotos/
 #feign:
 #  hystrix:          问题。。。。。
 #    enabled: true

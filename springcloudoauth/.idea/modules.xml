@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/hotel-server/hotel-server.iml" filepath="$PROJECT_DIR$/hotel-server/hotel-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/oauth-server/oauth-server.iml" filepath="$PROJECT_DIR$/oauth-server/oauth-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repo/repo.iml" filepath="$PROJECT_DIR$/repo/repo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-config-client/spring-cloud-config-client.iml" filepath="$PROJECT_DIR$/spring-cloud-config-client/spring-cloud-config-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/springcloudoauth.iml" filepath="$PROJECT_DIR$/springcloudoauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/static-resource-server/static-resource-server.iml" filepath="$PROJECT_DIR$/static-resource-server/static-resource-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-server/user-server.iml" filepath="$PROJECT_DIR$/user-server/user-server.iml" />

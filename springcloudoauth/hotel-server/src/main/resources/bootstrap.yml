@@ -1,0 +1,34 @@
+server:
+  port: 8007
+spring:
+  application:
+    name: hotel-server
+  cloud:
+    config:
+      name: application
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: configserver
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8001}/eureka/
+mybatis:
+  typeAliasesPackage: cn.lyf.hotelserver.entity
+  mapperLocations: classpath*:mapper/*.xml
+management:
+  security:
+    enabled: false
+feign.hystirx.enable: true
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8002/auth/user
+      prefer-token-info: false
