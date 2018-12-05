@@ -1,6 +1,17 @@
 spring: 
+  profiles:
+    active: dev
+    
+---
+#开发环境dev
+spring: 
+  profiles: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3309/db_hotel?useSSL=false
     username: root
     password: 123456
+  zipkin:
+    base-url: http://localhost:8020
+web:
+  upload-path: D:/DevelopPhotos/
