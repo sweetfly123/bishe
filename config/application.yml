@@ -11,7 +11,4 @@ spring:
     url: jdbc:mysql://localhost:3309/db_hotel?useSSL=false
     username: root
     password: 123456
-  zipkin:
-    base-url: http://localhost:8020
-web:
-  upload-path: D:/DevelopPhotos/
+
