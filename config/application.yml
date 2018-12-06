@@ -1,7 +1,6 @@
 spring: 
   profiles:
     active: dev
-    
 ---
 #开发环境dev
 spring: 
@@ -22,7 +21,9 @@ web:
 name: devddd2
 ---
 #测试环境
-name: test
+spring: 
+  profiles: test
+name: testddd
 ---
 #生产环境pro
 spring: 
