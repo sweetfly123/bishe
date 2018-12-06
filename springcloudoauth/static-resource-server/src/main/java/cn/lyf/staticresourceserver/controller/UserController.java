@@ -2,6 +2,7 @@ package cn.lyf.staticresourceserver.controller;
 
 import cn.lyf.staticresourceserver.entity.UserEntity;
 import cn.lyf.staticresourceserver.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ import java.security.Principal;
 public class UserController {
     @Resource
     private UserService userServcie;
+
+    @Value("${spring.mvc.static-path-pattern}")
+    private String hello;
     @GetMapping("/user")
     public Principal user(Principal user){
         return user;

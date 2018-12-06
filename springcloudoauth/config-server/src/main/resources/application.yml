@@ -10,6 +10,7 @@ spring:
           uri: https://github.com/sweetfly123/bishe.git
           search-paths: config
           default-label: master
+          repo
       #      username: 991370140@qq.com
       #      password: liuyunfeng123
     bus:

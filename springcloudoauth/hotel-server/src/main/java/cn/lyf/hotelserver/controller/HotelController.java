@@ -28,7 +28,8 @@ public class HotelController {
     public HotelController(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
     }
-
+    @Value("${spring.mvc.static-path-pattern}")
+    private String hello;
     @Value("${web.upload-path}")
     private String path;
     @Resource

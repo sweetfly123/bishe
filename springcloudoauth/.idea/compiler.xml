@@ -11,8 +11,6 @@
         <module name="hotel-server" />
         <module name="hotel_server" />
         <module name="oauth-server" />
-        <module name="repo" />
-        <module name="spring-cloud-config-client" />
         <module name="static-resource-server" />
         <module name="user-server" />
         <module name="zipkin-server" />
