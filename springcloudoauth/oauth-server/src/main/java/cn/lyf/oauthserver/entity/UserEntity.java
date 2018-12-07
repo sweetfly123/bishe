@@ -26,8 +26,20 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserEntity {
+    /**
+     * 用户名
+     */
     private String userName;
+    /**
+     * 用户密码
+     */
     private String password;
+    /**
+     * 用户角色
+     */
     private String role;
+    /**
+     * 用户权限
+     */
     private List<GrantedAuthority> grantedAuthorities;
 }

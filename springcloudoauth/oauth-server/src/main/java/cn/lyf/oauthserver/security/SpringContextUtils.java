@@ -23,7 +23,8 @@ public class SpringContextUtils implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        //this.applicationContext = applicationContext;     不应该通过类实例访问静态成员
+        SpringContextUtils.applicationContext = applicationContext;
     }
     /**
      * 获取applicationContext

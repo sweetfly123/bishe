@@ -13,20 +13,18 @@ import java.io.InputStream;
 
 /**
  * @Title: ServicesFallbackProvider
- * @Param:  * @param null
- * @Description: 网关熔断配置
+ * @Description: 服务熔断配置
  * @author: DIC.sweetlfy
  * @date: 2018/11/16 11:03
  * @Return:
  * @version: V1.0
  */
-@Component
+//@Component
 public class ServicesFallbackProvider implements ZuulFallbackProvider {
     @Override
     public String getRoute() {
         return "*";
     }
-
     @Override
     public ClientHttpResponse fallbackResponse() {
         return new ClientHttpResponse() {

@@ -3,39 +3,22 @@ spring:
     name: hotel-server
   zipkin:
     base-url: http://localhost:8020
-#  datasource:
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://localhost:3309/db_hotel?useSSL=false
-#      username: root
-#      password: 123456
-#  mvc:
-#    static-path-pattern: /resources/**
-#  resources:
-#    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${web.upload-path}
-
-
 
 server:
   port: 8007
 
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://${eureka.host:localhost}:${eureka.port:8001}/eureka/
-
 mybatis:
   typeAliasesPackage: cn.lyf.hotelserver.entity
   mapperLocations: classpath*:mapper/*.xml
+
 management:
   security:
     enabled: false
+
 feign.hystirx.enable: true
+
 security:
   oauth2:
     resource:
       user-info-uri: http://localhost:8002/auth/user
       prefer-token-info: false
-
-# 自定义文件上传路径
-#web:
-#  upload-path: D:/DevelopPhotos/

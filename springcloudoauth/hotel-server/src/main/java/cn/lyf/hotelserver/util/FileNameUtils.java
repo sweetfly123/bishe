@@ -1,5 +1,13 @@
 package cn.lyf.hotelserver.util;
 
+/**
+ * @Title: FileNameUtils
+ * @Description: 获取上传文件名工具类
+ * @author: DIC.lyf
+ * @date: 2018/12/7 11:44
+ * @Return:
+ * @version: V1.0
+ */
 public class FileNameUtils {
 
     /**

@@ -45,8 +45,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return inMemoryTokenStore;
     }
 
-
-    //定义令牌端点上的安全约束。
+    /**
+     * 定义令牌端点上的安全约束
+     * @param security
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("permitAll()");
@@ -72,7 +75,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .scopes("xx")
                 .authorizedGrantTypes("implicit");
     }
-    //定义授权和令牌端点和令牌服务。
+    /**
+     * 定义授权和令牌端点和令牌服务
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)

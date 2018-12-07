@@ -42,14 +42,14 @@ eureka:
 ribbon:        #饥饿加载
   eager-load:
       enabled: true
-  ReadTimeout: 30000
-  ConnectTimeout: 30000
+  ReadTimeout: 3000000
+  ConnectTimeout: 3000000
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 1
   eureka:
     enabled: true
 #eureka客户端ribbon刷新时间
-  ServerListRefreshInterval: 50000
+  ServerListRefreshInterval: 5000000
 
 #链路熔断配置
 hystrix:
@@ -60,4 +60,4 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 6000000

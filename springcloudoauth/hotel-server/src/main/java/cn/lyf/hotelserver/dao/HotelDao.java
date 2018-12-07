@@ -1,7 +1,6 @@
 package cn.lyf.hotelserver.dao;
 
 import cn.lyf.hotelserver.entity.Hotel;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,15 +14,33 @@ import java.util.List;
  */
 @Repository
 public interface HotelDao {
-    //通过房间号查询
+    /**
+     * 通过房间号查询
+     * @param hotelId
+     * @return
+     */
     Hotel getHotelByHotelId(String hotelId);
-    //查询所有房间信息
+    /**
+     *  查询所有房间信息
+     * @return
+     */
     List<Hotel> findAllHotels();
-    //通过UserName查询该用户的房间
+    /**
+     * 通过UserName查询该用户的房间
+     * @param userName
+     * @return
+     */
     List<Hotel> getHotelByUserName(String userName);
-    //增加房间
+    /**
+     * 增加房间
+     * @param hotel
+     * @return
+     */
     int addHotel(Hotel hotel);
-    //更新房间信息
-    //int updateHotel(@Param("userId") String userId, @Param("roomId") String roomId);
+    /**
+     * 更新房间信息
+     * @param hotel
+     * @return
+     */
     int updateHotel(Hotel hotel);
 }

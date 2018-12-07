@@ -1,6 +1,7 @@
-package cn.lyf.oauthserver.service;
+package cn.lyf.oauthserver.service.Impl;
 import cn.lyf.oauthserver.dao.UserDao;
 import cn.lyf.oauthserver.entity.UserEntity;
+import cn.lyf.oauthserver.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

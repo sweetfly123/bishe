@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import java.util.Enumeration;
 /**
  * @Title: FeignConfiguration
  * @Package cn.lyf.staticresourceserver.config
- * @Description: (用一句话描述该文件做什么)
+ * @Description: 服务间调用时，重新封装请求头
  * @author DIC.sweetlfy
  * @date 2018/11/18 16:11 
  * @version V1.0
@@ -23,7 +24,10 @@ import java.util.Enumeration;
 @Configuration
 public class FeignConfiguration {
     private Logger logger = LoggerFactory.getLogger(FeignConfiguration.class);
-
+    @Bean
+    public RequestContextListener requestContextListener(){
+        return new RequestContextListener();
+    }
     @Bean
     public RequestInterceptor requestInterceptor() {
         return new RequestInterceptor() {

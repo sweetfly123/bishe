@@ -21,9 +21,10 @@ server:
 #security:
 #  oauth2:
 #    resource:
-#      filter-order: 3
+#
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8002/auth/user      #内置有user对象的地址，才能获取到同一个token
+      filter-order: 3
+      user-info-uri: http://localhost:8002/auth/users/user      #内置有user对象的地址，才能获取到同一个token
       prefer-token-info: false

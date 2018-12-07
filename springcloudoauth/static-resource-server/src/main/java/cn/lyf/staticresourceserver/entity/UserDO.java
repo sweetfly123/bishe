@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
- * @Title: UserEntity
+ * @Title: UserDO
  * @Package cn.lyf.oauthserver.entity
  * @Description: (用一句话描述该文件做什么)
  * @author DIC.sweetlfy
@@ -17,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class UserDO {
     private String userName;
     private String password;
     private String role;

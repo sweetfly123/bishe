@@ -1,11 +1,4 @@
-package cn.lyf.oauthserver.security;/**
- * @Title: $file_name
- * @Package $package_name
- * @Description: $todo(用一句话描述该文件做什么)
- * @author DIC.$user
- * @date $date$ $time
- * @version V1.0
- */
+package cn.lyf.oauthserver.security;
 
 import cn.lyf.oauthserver.entity.UserEntity;
 import cn.lyf.oauthserver.service.UserService;

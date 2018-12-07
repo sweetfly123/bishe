@@ -44,14 +44,14 @@ function addIframe(cur){
 	if (h == "" || $.trim(h).length == 0) {
 		return false;
 	}
-	
+
 	var fullWidth = $(window).width();
 	if(fullWidth >= 750){
 		$(".layout-side").show();
 	}else{
 		$(".layout-side").hide();
 	}
-	
+
 	$(".content-tab").each(function() {
 		if ($(this).data("id") == h) {
 			if (!$(this).hasClass("active")) {
@@ -269,7 +269,7 @@ function closePage() {
 
 /*循环菜单*/
 function initMenu(menu,parent){
-	for(var i=0; i<menu.length; i++){   
+	for(var i=0; i<menu.length; i++){
 		var item = menu[i];
 		var str = "";
 		try{
@@ -330,13 +330,13 @@ $(".header-menu-btn").click(function(){
 	$(".layout-footer").removeClass("full-page");
 	$(".layout-side-arrow").removeClass("close");
 	$(".layout-side-arrow-icon").removeClass("close");
-	
+
 	$(".layout-side").slideToggle();
 });
 
 /*左侧菜单响应式*/
-$(window).resize(function() {  
-	var width = $(this).width();  
+$(window).resize(function() {
+	var width = $(this).width();
 	if(width >= 750){
 		$(".layout-side").show();
 	}else{
@@ -350,7 +350,7 @@ $(".dropdown-skin li a").click(function(){
 	var hrefStr=$("#layout-skin").attr("href");
 	var hrefRes=hrefStr.substring(0,hrefStr.lastIndexOf('skin/'))+'skin/'+v+'/skin.css';
 	$(window.frames.document).contents().find("#layout-skin").attr("href",hrefRes);
-	
+
 	setCookie("scclui-skin", v);
 });
 
@@ -395,9 +395,9 @@ $(function(){
 	/*菜单json*/
 	var menu = [{"id":"1","name":"主菜单","parentId":"0","url":"","icon":"","order":"1","isHeader":"1","childMenus":[
 					{"id":"3","name":"酒店管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
-						{"id":"4","name":"房间总览","parentId":"3","url":"addRoom.html","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"5","name":"房间添加","parentId":"3","url":"addRoom.html","icon":"","order":"1","isHeader":"0","childMenus":""},
-                        {"id":"9","name":"房间总览","parentId":"3","url":"test2.html","icon":"","order":"1","isHeader":"0","childMenus":""}
+						{"id":"4","name":"房间总览","parentId":"3","url":"test1.html","icon":"","order":"1","isHeader":"0","childMenus":""},
+                        {"id":"5","name":"添加房型","parentId":"3","url":"addRoom.html","icon":"","order":"1","isHeader":"0","childMenus":""},
+                        {"id":"9","name":"房间总览","parentId":"3","url":"test1.html","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"6","name":"订单管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"7","name":"已付款","parentId":"6","url":"home3.html","icon":"","order":"1","isHeader":"0","childMenus":""},
@@ -423,7 +423,7 @@ $(function(){
 				];
 	initMenu(menu,$(".side-menu"));
 	$(".side-menu > li").addClass("menu-item");
-	
+
 	/*获取菜单icon随机色*/
 	getMathColor();
 }); 

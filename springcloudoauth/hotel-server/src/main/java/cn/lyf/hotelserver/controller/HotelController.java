@@ -2,7 +2,6 @@ package cn.lyf.hotelserver.controller;
 
 import cn.lyf.hotelserver.entity.Hotel;
 import cn.lyf.hotelserver.service.HotelService;
-import cn.lyf.hotelserver.util.AuthenticationUtil;
 import cn.lyf.hotelserver.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +18,16 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * @Title:  HotelController
+ * @Description: 酒店房间接口
+ * @author: DIC.lyf
+ * @date: 2018/12/7 11:31
+ * @Return:
+ * @version: V1.0
+ */
 @RestController
+@RequestMapping("/hotels")
 public class HotelController {
     private final ResourceLoader resourceLoader;
 
@@ -28,33 +35,50 @@ public class HotelController {
     public HotelController(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
     }
-    @Value("${spring.mvc.static-path-pattern}")
-    private String hello;
+
     @Value("${web.upload-path}")
     private String path;
     @Resource
     private HotelService hotelService;
 
-    //通过房间号查询
-    @RequestMapping("/hotel/getHotelByHotelId/{hotelId}")
+    /**
+     * 通过房间号查询
+     * @param hotelId
+     * @return
+     */
+    @RequestMapping(value = "/hotel/{hotelId}",method = RequestMethod.GET)
     public Hotel getHotelByHotelId(@PathVariable("hotelId") String hotelId){
          Hotel hotel =  hotelService.getHotelByHotelId(hotelId);
         return hotel;
     }
-    //查询所有房间信息
-    @RequestMapping(value = "/hotel/findAllHotels",method = RequestMethod.GET)
+    /**
+     * 查询所有房间信息
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/hotel",method = RequestMethod.GET)
     public List<Hotel> findAllHotels(){
          List<Hotel> list = hotelService.findAllHotels();
          return list;
     }
-    //userName
-    @RequestMapping("/hotel/getHotelByUserName/{userName}")
+
+    /**
+     * 根据用户名查询房间
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "/hotel/userName/{userName}",method = RequestMethod.GET)
     public List<Hotel> getHotelByUserName(@PathVariable("userName") String userName){
         return hotelService.getHotelByUserName(userName);
     }
 
-    //增加房间
-    @RequestMapping(value = "/hotel/addHotel",method = RequestMethod.POST)
+    /**
+     * 增加房间
+     * @param file
+     * @param hotel
+     * @return
+     */
+    @RequestMapping(value = "/hotel",method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('admin')")
     public int addHotel(MultipartFile file, Hotel hotel ){
         //String localPath =getRequest().getServletContext().getRealPath("/static");
@@ -79,9 +103,8 @@ public class HotelController {
         return 1;
     }
 
-    @RequestMapping("/hotel/booking")
-    public int bookHotel(String roomId,String userId){
-        //String userName = AuthenticationUtil.getUserName();
+    @RequestMapping(value = "/hotel/room/{roomId}/user/{userId}",method = RequestMethod.PUT)
+    public int bookHotel(@PathVariable("roomId") String roomId,@PathVariable("userId") String userId){
         int result = hotelService.updateHotel(userId,roomId);
         return result;
     }

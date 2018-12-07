@@ -4,6 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @Title: Hotel
+ * @Description: 酒店实体类
+ * @author: DIC.lyf
+ * @date: 2018/12/7 11:43
+ * @Return:
+ * @version: V1.0
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
