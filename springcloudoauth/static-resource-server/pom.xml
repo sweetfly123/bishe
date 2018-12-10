@@ -26,11 +26,11 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>io.github.openfeign</groupId>-->
-            <!--<artifactId>feign-httpclient</artifactId>-->
-            <!--<version>9.5.1</version>-->
-        <!--</dependency>-->
+<!--        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>9.5.1</version>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
@@ -39,17 +39,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
-<!--            <exclusions>
-                <exclusion>
-                    <groupId>io.github.openfeign</groupId>
-                    <artifactId>feign-hystrix</artifactId>
-                </exclusion>
-            </exclusions>-->
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

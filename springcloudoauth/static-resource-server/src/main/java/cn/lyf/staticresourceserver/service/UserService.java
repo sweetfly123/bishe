@@ -1,7 +1,10 @@
 package cn.lyf.staticresourceserver.service;
 
+import cn.lyf.staticresourceserver.config.FeignConfiguration;
 import cn.lyf.staticresourceserver.entity.UserDO;
+import cn.lyf.staticresourceserver.service.Impl.UserServiceImpl;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @Description: $todo(用一句话描述该文件做什么)
  * @date $date$ $time
  */
-@FeignClient(name = "user-server")
+@FeignClient(name = "user-server",fallback = UserServiceImpl.class)
 public interface UserService {
     /**
      * @method register

@@ -24,7 +24,7 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(
                 (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)
         )
-                .and().authorizeRequests().antMatchers("/resources/**", "/favicon.ico", "/js_pre/*.js_pre", "/*.html", "/css_pre/*.css_pre", "/images_pre/*.*").permitAll()
+                .and().authorizeRequests().antMatchers("/static/**","/resources/**", "/favicon.ico", "/js_pre/*.js_pre", "/*.html", "/css_pre/*.css_pre", "/images_pre/*.*").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated().and().httpBasic();
     }
 }

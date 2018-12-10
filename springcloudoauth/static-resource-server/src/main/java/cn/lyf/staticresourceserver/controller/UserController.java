@@ -2,6 +2,7 @@ package cn.lyf.staticresourceserver.controller;
 
 import cn.lyf.staticresourceserver.entity.UserDO;
 import cn.lyf.staticresourceserver.service.UserService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,7 +25,7 @@ import java.security.Principal;
 @PreAuthorize("hasAuthority('user')")
 public class UserController {
     @Resource
-    private UserService userServcie;
+    private UserService userService;
 
     @Value("${spring.mvc.static-path-pattern}")
     private String hello;
@@ -47,7 +48,7 @@ public class UserController {
         UserDO userDO = new UserDO();
         userDO.setUserName(userName);
         userDO.setPassword(new BCryptPasswordEncoder().encode(password));
-        userServcie.register(userDO);
+        userService.register(userDO);
     }
 
     /**
@@ -63,7 +64,7 @@ public class UserController {
     public UserDO login(String userName, String password) {
         UserDO userDO = new UserDO();
         userDO.setUserName(userName);
-        userDO = userServcie.login(userName);
+        userDO = userService.login(userName);
         return userDO;
     }
 }

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +24,8 @@ import java.util.Enumeration;
 public class FeignConfiguration {
     private Logger logger = LoggerFactory.getLogger(FeignConfiguration.class);
     @Bean
-    public RequestContextListener requestContextListener(){
-        return new RequestContextListener();
+    public FeignHystrixConcurrencyStrategy feignHystrixConcurrencyStrategy() {
+        return new FeignHystrixConcurrencyStrategy();
     }
     @Bean
     public RequestInterceptor requestInterceptor() {

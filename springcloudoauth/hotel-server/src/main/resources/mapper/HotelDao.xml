@@ -10,7 +10,7 @@
         where
           h.roomId = #{hotelId}
     </select>
-    <resultMap id="hotel" type="cn.lyf.hotelserver.do.Hotel" autoMapping="true">
+    <resultMap id="hotel" type="cn.lyf.hotelserver.entity.Hotel" autoMapping="true">
         <id column="room_id" property="roomId"/>
         <result column="room_type" property="roomType"/>
         <result column="room_price" property="roomPrice"/>

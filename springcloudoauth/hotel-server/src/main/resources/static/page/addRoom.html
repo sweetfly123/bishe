@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<script src="js_pre/jquery-3.3.1.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.2.1.1.min.js"></script>
 <script>
     function add() {
-        var token = window.sessionStorage.getItem("token"),
+        var token = localStorage.getItem("token"),
             roomId = $("#roomId").val(),
             roomType = $("#roomType").val(),
             roomPrice = $("#roomPrice").val();
 
-        var file = document.getElementById("pic").files[0];
+        var file = document.getElementById("roomPicturePath").files[0];
         var formData = new FormData();
         formData.append('roomId', roomId);
         formData.append('roomType', roomType);
@@ -20,7 +20,7 @@
         formData.append('file', file);
 
         $.ajax({
-            url: "http://localhost:8002/hotel/hotel/addHotel",
+            url: "http://localhost:8002/hotel/hotels/hotel",
             type: "POST",
             contentType: "application/json;charset=utf-8",
             async: false,

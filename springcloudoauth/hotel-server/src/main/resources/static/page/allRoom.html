@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="keywords" content="scclui框架">
+    <meta name="description" content="scclui为轻量级的网站后台管理系统模版。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>房间总览</title>
+</head>
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../assets/font-awesome/4.2.0/css/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="../assets/fonts/fonts.googleapis.com.css"/>
+
+<link rel="stylesheet" href="../assets/css/ace.min.css"/>
+
+<link rel="stylesheet" href="../assets/css/ace-part2.min.css"/>
+<link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
+
+<link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
+<script src="../assets/js/html5shiv.min.js"></script>
+<script src="../assets/js/respond.min.js"></script>
+<script src="../assets/js/jquery.2.1.1.min.js"></script>
+<script>
+    $(function () {
+        var token = localStorage.getItem("token");
+        $.ajax({
+            url: "http://localhost:8002/hotel/hotels/hotel",
+            type: "GET",
+            async: false,
+            dataType: "json",
+            beforeSend: function (e) {
+                e.setRequestHeader("Authorization", "bearer " + token);
+            },
+            success: function (data) {
+                var i = 0;
+                var context = "";
+                var type;
+                for (i in data) {
+                    if (data[i].roomType == "1") {
+                        type = "单人";
+                    } else {
+                        type = "双人";
+                    }
+                    context += "<tr>\n" +
+                        "<td class=\".col-md-4\">"+type+"</td>\n" +
+                        "<td class=\".col-md-4\"><img style=\"width: 60px;height: 60px;\" src=\"http://localhost:8002/hotel/resources/"+data[i].roomPicturePath+"\"></td>\n" +
+                        "<td class=\".col-md-4\">"+data[i].roomPrice+"</td>\n" +
+                        "</tr>";
+                    $("#roomList").append(context);
+                    context = "";
+                }
+            }
+        });
+    })
+</script>
+<style>
+    td{
+        height:50px;
+        text-align: center;
+        line-height: inherit;
+    }
+</style>
+<body>
+<table id="roomList" class="table table-hover">
+
+</table>
+</body>
+</html>
