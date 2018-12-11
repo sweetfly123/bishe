@@ -35,7 +35,7 @@ public class Hotel {
     /**
      是否预订
      */
-    private boolean isBook;
+    private boolean booked;
     /**
      订房用户id
      */

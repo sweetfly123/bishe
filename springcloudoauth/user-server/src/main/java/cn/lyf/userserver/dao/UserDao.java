@@ -1,6 +1,6 @@
 package cn.lyf.userserver.dao;
 
-import cn.lyf.userserver.entity.UserEntity;
+import cn.lyf.userserver.entity.UserDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,10 +19,10 @@ public interface UserDao {
      * @Description: 登录，从数据中获取用户信息
      * @author: DIC.sweetlfy
      * @date: 2018/11/15 17:15
-     * @Return: cn.lyf.oauthserver.entity.UserEntity
+     * @Return: cn.lyf.oauthserver.entity.UserDO
      * @version: V1.0
      */
-    UserEntity login(String userName);
+    UserDO login(String userName);
     /**
      * @method:
      * @Param:  * @param null

@@ -40,17 +40,30 @@
                 var i = 0;
                 var context = "";
                 var type;
+                var booked;
                 for (i in data) {
                     if (data[i].roomType == "1") {
                         type = "单人";
                     } else {
                         type = "双人";
                     }
-                    context += "<tr>\n" +
-                        "<td class=\".col-md-4\">"+type+"</td>\n" +
-                        "<td class=\".col-md-4\"><img style=\"width: 60px;height: 60px;\" src=\"http://localhost:8002/hotel/resources/"+data[i].roomPicturePath+"\"></td>\n" +
-                        "<td class=\".col-md-4\">"+data[i].roomPrice+"</td>\n" +
-                        "</tr>";
+                    if (data[i].booked == true) {
+                        booked = "已预订";
+                    } else {
+                        booked = "空房";
+                    }
+                    context += "<div style=\"height: 70px;text-align: center;line-height: 70px;border-bottom:1px solid #2b3d53;\">" +
+                        "<div class=\"col-md-2\">" + data[i].roomId + "</div>" +
+                        "<div class=\"col-md-2\">" + type + "</div>" +
+                        "<div class=\"col-md-2\"><img style=\"width: 60px;height: 60px;\" src=\"http://localhost:8002/hotel/resources/" + data[i].roomPicturePath + "\"></div>" +
+                        "<div class=\"col-md-2\">" + data[i].roomPrice + "</div>" +
+                        "<div class=\"col-md-2\">" + booked + "</div>" +
+                        "<div class=\"col-md-2\">" +
+                        "<button onclick=\"hotelEdit("+data[i].roomId+")\" type=\"button\" class=\"glyphicon glyphicon-edit btn-xs btn-primary\" style=\"border: none;\">" +
+                        "</button>&nbsp;" +
+                        "<button onclick=\"hotelDelete("+data.roomId+")\" type=\"button\" class=\"glyphicon glyphicon-trash btn-xs btn-danger\" style=\"border: none;\">" +
+                        "</button></div>" +
+                        "</div>";
                     $("#roomList").append(context);
                     context = "";
                 }
@@ -59,15 +72,32 @@
     })
 </script>
 <style>
-    td{
-        height:50px;
+    td {
+        height: 50px;
         text-align: center;
         line-height: inherit;
     }
 </style>
 <body>
 <table id="roomList" class="table table-hover">
-
+    <div style="height: 70px;text-align: center;line-height: 70px;border-bottom:1px solid #000;">
+        <div class="col-md-2">房间号</div>
+        <div class="col-md-2">房间类型</div>
+        <div class="col-md-2">图片简介</div>
+        <div class="col-md-2">价格</div>
+        <div class="col-md-2">是否预订</div>
+        <div class="col-md-2">操作</div>
+<!--        <button type="button" class="glyphicon glyphicon-edit btn-xs btn-primary" style="border: none;">
+        </button>&nbsp;
+        <button type="button" class="glyphicon glyphicon-trash btn-xs btn-danger" style="border: none;">
+        </button>-->
+    </div>
+    <div style="height: 70px;text-align: center;line-height: 70px;border-bottom:1px solid #000;">
+        <div class="col-md-2" style="border-right:1px solid #000;">单人</div>
+        <div class="col-md-2"><img style="width: 60px;height: 60px;"
+                                   src="http://localhost:8002/hotel/resources/u=1208544201,1064095414&fm=72.jpg"></div>
+        <div class="col-md-2">120</div>
+    </div>
 </table>
 </body>
 </html>

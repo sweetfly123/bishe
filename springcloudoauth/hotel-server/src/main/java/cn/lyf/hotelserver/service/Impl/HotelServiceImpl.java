@@ -46,7 +46,7 @@ public class HotelServiceImpl implements HotelService {
         Hotel hotel = new Hotel();
         hotel.setUserId(userId);
         hotel.setRoomId(roomId);
-        hotel.setBook(true);
+        hotel.setBooked(true);
         return hotelDao.updateHotel(hotel);
     }
 }

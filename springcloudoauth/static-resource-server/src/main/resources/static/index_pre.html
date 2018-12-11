@@ -64,7 +64,7 @@
             },
             success: function (data) {
                 var i = 0;
-                var type,isBook,bookclass;
+                var type,booked,bookclass;
                 var context = "<div class=\"col-md-2\" style=\"text-align:center;height:250px;padding:10px 0px;\">";
                 for (i in data) {
 
@@ -73,12 +73,12 @@
                     } else {
                         type = "双人";
                     }
-                    if (data[i].book == true) {
-                        isBook = "已预订";
-                        bookclass = "btn"
+                    if (data[i].booked == true) {
+                        booked = "已预订";
+                        bookclass = "btn";
                     } else {
-                        isBook = "可预订";
-                        bookclass ="btn btn-danger"
+                        booked = "可预订";
+                        bookclass ="btn btn-danger";
                     }
                     context += "<a href=\"\">" +
                         "<img class='img-rounded' src=\"http://127.0.0.1:8002/static/resources/" + data[i].roomPicturePath + "\"onclick=\"booking(" + data[i].roomId + ")\" width=\"130\" height=\"130\"\n" +

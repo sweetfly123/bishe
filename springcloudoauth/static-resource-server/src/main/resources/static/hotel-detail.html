@@ -43,10 +43,9 @@
             var token = window.sessionStorage.getItem("token");
             var currentUserId = window.localStorage.getItem("currentUserId");
             $.ajax({
-                url: "http://localhost:8002/hotel/hotel/booking",
-                type: "GET",
+                url: "http://localhost:8002/hotel/hotels/hotel/roomId/"+roomId+"/userId/"+currentUserId,
+                type: "PUT",
                 async: false,
-                data: {"roomId": roomId, "userId": currentUserId},
                 beforeSend: function (e) {
                     e.setRequestHeader("Authorization", "bearer " + token);
                 },
@@ -409,33 +408,8 @@
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control" type="text" name="dates" placeholder="When..">
+                                <input class="form-control form_datetime" type="text" name="dates" placeholder="When..">
                                 <i class="icon_calendar"></i>
-                            </div>
-
-                            <div class="panel-dropdown">
-                                <a href="#">Guests <span class="qtyTotal">1</span></a>
-                                <div class="panel-dropdown-content right">
-                                    <div class="qtyButtons">
-                                        <label>Adults</label>
-                                        <input type="text" name="qtyInput" value="1">
-                                    </div>
-                                    <div class="qtyButtons">
-                                        <label>Childrens</label>
-                                        <input type="text" name="qtyInput" value="0">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group clearfix">
-                                <div class="custom-select-form">
-                                    <select class="wide">
-                                        <option>Room Type</option>
-                                        <option>Single Room</option>
-                                        <option>Double Room</option>
-                                        <option>Suite Room</option>
-                                    </select>
-                                </div>
                             </div>
                             <a href="#" onclick="booking()" class=" add_top_30 btn_1 full-width purchase">订购</a>
                             <a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i>
@@ -517,9 +491,9 @@
 <div id="toTop"></div><!-- Back to top button -->
 
 <!-- Map -->
-<script src="http://maps.googleapis.com/maps/api/js"></script>
+<!--<script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="js/map_single_hotel.js"></script>
-<script src="js/infobox.js"></script>
+<script src="js/infobox.js"></script>-->
 
 <!-- DATEPICKER  -->
 <script>

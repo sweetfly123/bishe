@@ -1,6 +1,6 @@
 package cn.lyf.userserver.controller;
 
-import cn.lyf.userserver.entity.UserEntity;
+import cn.lyf.userserver.entity.UserDO;
 import cn.lyf.userserver.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -38,10 +38,10 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void regist(String userName, String password) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(userName);
-        userEntity.setPassword(new BCryptPasswordEncoder().encode(password));
-        userService.register(userEntity);
+        UserDO userDO = new UserDO();
+        userDO.setUserName(userName);
+        userDO.setPassword(new BCryptPasswordEncoder().encode(password));
+        userService.register(userDO);
     }
 
     /**
@@ -50,14 +50,14 @@ public class UserController {
      * @Description: (用一句话描述该文件做什么)
      * @author: DIC.sweetlfy
      * @date: 2018/11/15 17:13
-     * @Return: cn.lyf.oauthserver.entity.UserEntity
+     * @Return: cn.lyf.oauthserver.entity.UserDO
      * @version: V1.0
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public UserEntity login(@RequestParam("userName") String userName) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(userName);
-        userEntity = userService.login(userEntity);
-        return userEntity;
+    public UserDO login(@RequestParam("userName") String userName) {
+        UserDO userDO = new UserDO();
+        userDO.setUserName(userName);
+        userDO = userService.login(userDO);
+        return userDO;
     }
 }

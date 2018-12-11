@@ -7,7 +7,7 @@
         SELECT user_id,user_name,password,role_name FROM table_user tu, table_role tr where tu.role = tr.role_id AND tu.user_name = #{userName}
     </select>
 
-    <resultMap id="loginresultmap" type="UserEntity">
+    <resultMap id="loginresultmap" type="UserDO">
         <id column="user_id" property="userId" />
         <result column="user_name" property="userName" />
         <result column="password" property="password" />

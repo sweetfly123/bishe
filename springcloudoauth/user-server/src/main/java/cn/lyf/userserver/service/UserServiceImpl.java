@@ -1,6 +1,6 @@
 package cn.lyf.userserver.service;
 import cn.lyf.userserver.dao.UserDao;
-import cn.lyf.userserver.entity.UserEntity;
+import cn.lyf.userserver.entity.UserDO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,21 +21,21 @@ public class UserServiceImpl implements UserService {
 
     /**
      * @method: login
-     * @Param:  * @param userEntity
+     * @Param:  * @param userDO
      * @Description: (用一句话描述该文件做什么)
      * @author: DIC.sweetlfy
      * @date: 2018/11/15 17:14
-     * @Return: cn.lyf.oauthserver.entity.UserEntity
+     * @Return: cn.lyf.oauthserver.entity.UserDO
      * @version: V1.0
      */
     @Override
-    public UserEntity login(UserEntity userEntity) {
-        return userDao.login(userEntity.getUserName());
+    public UserDO login(UserDO userDO) {
+        return userDao.login(userDO.getUserName());
     }
 
     /**
      * @method  register
-     * @Param:  * @param userEntity
+     * @Param:  * @param userDO
      * @Description: (用一句话描述该文件做什么)
      * @author DIC.sweetlfy
      * @date 2018/11/15 17:08
@@ -43,8 +43,8 @@ public class UserServiceImpl implements UserService {
      * @version V1.0
      */
     @Override
-    public int register(UserEntity userEntity) {
-        return userDao.register(userEntity.getUserName(),userEntity.getPassword());
+    public int register(UserDO userDO) {
+        return userDao.register(userDO.getUserName(), userDO.getPassword());
     }
 
     /**
