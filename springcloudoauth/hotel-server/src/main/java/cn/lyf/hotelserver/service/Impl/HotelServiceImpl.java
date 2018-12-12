@@ -1,7 +1,7 @@
 package cn.lyf.hotelserver.service.Impl;
 
 import cn.lyf.hotelserver.dao.HotelDao;
-import cn.lyf.hotelserver.entity.Hotel;
+import cn.lyf.hotelserver.entity.HotelDO;
 import cn.lyf.hotelserver.service.HotelService;
 import org.springframework.stereotype.Service;
 
@@ -22,31 +22,31 @@ public class HotelServiceImpl implements HotelService {
     private HotelDao hotelDao;
 
     @Override
-    public Hotel getHotelByHotelId(String hotelId) {
+    public HotelDO getHotelByHotelId(String hotelId) {
         return hotelDao.getHotelByHotelId(hotelId);
     }
 
     @Override
-    public List<Hotel> findAllHotels() {
+    public List<HotelDO> findAllHotels() {
         return hotelDao.findAllHotels();
 }
 
     @Override
-    public List<Hotel> getHotelByUserName(String userName) {
+    public List<HotelDO> getHotelByUserName(String userName) {
         return hotelDao.getHotelByUserName(userName);
     }
 
     @Override
-    public int addHotel(Hotel hotel) {
-        return hotelDao.addHotel(hotel);
+    public int addHotel(HotelDO hotelDO) {
+        return hotelDao.addHotel(hotelDO);
     }
 
     @Override
     public int updateHotel(String userId, String roomId) {
-        Hotel hotel = new Hotel();
-        hotel.setUserId(userId);
-        hotel.setRoomId(roomId);
-        hotel.setBooked(true);
-        return hotelDao.updateHotel(hotel);
+        HotelDO hotelDO = new HotelDO();
+        hotelDO.setUserId(userId);
+        hotelDO.setRoomId(roomId);
+        hotelDO.setBooked(true);
+        return hotelDao.updateHotel(hotelDO);
     }
 }

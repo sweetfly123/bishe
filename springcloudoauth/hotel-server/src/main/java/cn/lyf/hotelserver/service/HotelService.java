@@ -1,7 +1,7 @@
 package cn.lyf.hotelserver.service;
 
 
-import cn.lyf.hotelserver.entity.Hotel;
+import cn.lyf.hotelserver.entity.HotelDO;
 
 import java.util.List;
 /**
@@ -18,24 +18,24 @@ public interface HotelService {
      * @param hotelId
      * @return
      */
-    Hotel getHotelByHotelId(String hotelId);
+    HotelDO getHotelByHotelId(String hotelId);
     /**
      *  查询所有房间信息
      * @return
      */
-    List<Hotel> findAllHotels();
+    List<HotelDO> findAllHotels();
     /**
      * 通过UserName查询该用户的房间
      * @param userName
      * @return
      */
-    List<Hotel> getHotelByUserName(String userName);
+    List<HotelDO> getHotelByUserName(String userName);
     /**
      * 增加房间
-     * @param hotel
+     * @param hotelDO
      * @return
      */
-    int addHotel(Hotel hotel);
+    int addHotel(HotelDO hotelDO);
     /**
      * 更新房间信息
      * @param roomId

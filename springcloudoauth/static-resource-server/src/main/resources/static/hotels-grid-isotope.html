@@ -80,7 +80,7 @@
                             "</figure>" +
                             "<div class=\"wrapper\">\n" +
                             "<div class=\"cat_star\"><i class=\"icon_star\"></i><i class=\"icon_star\"></i><i class=\"icon_star\"></i><i class=\"icon_star\"></i></div>\n" +
-                            "<h3><a href=\"hotel-detail.html\">" + type + "</a></h3>\n" +
+                            "<h3><a href=\"hotelDO-detail.html\">" + type + "</a></h3>\n" +
                             "<p style='width:280px;height:60px;line-height:30px;text-overflow:ellipsis;overflow:hidden;display:block;'>窗明几净 优雅舒适 富丽堂皇 宾至如归</p>\n" +
                             "<span class=\"price\">价格 <strong>￥" + data[i].roomPrice + "</strong> /一晚</span>\n" +
                             "</div>" +
@@ -121,7 +121,7 @@
             var token = window.sessionStorage.getItem("token");
             var userName = window.sessionStorage.getItem("userName");
             $.ajax({
-                url: "http://localhost:8002/hotel/hotel/getHotelByUserName/" + userName,
+                url: "http://localhost:8002/hotel/hotels/getHotelByUserName/" + userName,
                 type: "GET",
                 async: false,
                 beforeSend: function (e) {
@@ -249,7 +249,7 @@
                         <div class="box_grid">
                             <figure>
                                 <a href="#0" class="wish_bt"></a>
-                                <a href="hotel-detail.html"><img src="img/hotel_1.jpg" class="img-fluid" alt=""
+                                <a href="hotelDO-detail.html"><img src="img/hotel_1.jpg" class="img-fluid" alt=""
                                                                  width="800" height="533">
                                     <div class="read_more"><span>Read more</span></div>
                                 </a>
@@ -258,7 +258,7 @@
                             <div class="wrapper">
                                 <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i
                                         class="icon_star"></i><i class="icon_star"></i></div>
-                                <h3><a href="hotel-detail.html">Park Hyatt Hotel</a></h3>
+                                <h3><a href="hotelDO-detail.html">Park Hyatt Hotel</a></h3>
                                 <p style="width:280px;height:60px;line-height:30px;overflow:hidden;display:block;">Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti
                                     cu.</p>
                                 <span class="price">From <strong>$54</strong> /per person</span>

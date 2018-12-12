@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Title: Hotel
+ * @Title: HotelDO
  * @Description: 酒店实体类
  * @author: DIC.lyf
  * @date: 2018/12/7 11:43
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hotel {
+public class HotelDO {
     /**
      房间号
      */

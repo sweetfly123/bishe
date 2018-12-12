@@ -14,7 +14,7 @@
         <module>static-resource-server</module>
         <module>user-server</module>
         <module>zuul-server</module>
-        <module>hotel-server</module>
+        <module>hotelDO-server</module>
         <module>zipkin-server</module>
     </modules>
 

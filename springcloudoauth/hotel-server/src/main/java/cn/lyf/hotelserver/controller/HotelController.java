@@ -1,22 +1,17 @@
 package cn.lyf.hotelserver.controller;
 
-import cn.lyf.hotelserver.entity.Hotel;
+import cn.lyf.hotelserver.entity.HotelDO;
 import cn.lyf.hotelserver.service.HotelService;
 import cn.lyf.hotelserver.util.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -43,9 +38,9 @@ public class HotelController {
      * @return
      */
     @RequestMapping(value = "/hotel/{hotelId}", method = RequestMethod.GET)
-    public Hotel getHotelByHotelId(@PathVariable("hotelId") String hotelId) {
-        Hotel hotel = hotelService.getHotelByHotelId(hotelId);
-        return hotel;
+    public HotelDO getHotelByHotelId(@PathVariable("hotelId") String hotelId) {
+        HotelDO hotelDO = hotelService.getHotelByHotelId(hotelId);
+        return hotelDO;
     }
 
     /**
@@ -55,8 +50,8 @@ public class HotelController {
      * @return
      */
     @RequestMapping(value = "/hotel", method = RequestMethod.GET)
-    public List<Hotel> findAllHotels() {
-        List<Hotel> list = hotelService.findAllHotels();
+    public List<HotelDO> findAllHotels() {
+        List<HotelDO> list = hotelService.findAllHotels();
         return list;
     }
 
@@ -67,7 +62,7 @@ public class HotelController {
      * @return
      */
     @RequestMapping(value = "/hotel/userName/{userName}", method = RequestMethod.GET)
-    public List<Hotel> getHotelByUserName(@PathVariable("userName") String userName) {
+    public List<HotelDO> getHotelByUserName(@PathVariable("userName") String userName) {
         return hotelService.getHotelByUserName(userName);
     }
 
@@ -75,12 +70,12 @@ public class HotelController {
      * 增加房间
      *
      * @param file
-     * @param hotel
+     * @param hotelDO
      * @return
      */
     @RequestMapping(value = "/hotel", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('admin')")
-    public int addHotel(MultipartFile file, Hotel hotel) {
+    public int addHotel(MultipartFile file, HotelDO hotelDO) {
         //String localPath =getRequest().getServletContext().getRealPath("/static");
         // 要上传的目标文件存放路径
 //        File filedir = new File(path);
@@ -97,9 +92,9 @@ public class HotelController {
             msg = "上传失败！";
         }
         String fileName = file.getOriginalFilename();
-        hotel.setRoomPicturePath(fileName);
-        // hotel.setRoomPicturePath(resourceLoader.getResource("file:" + path + fileName));
-        hotelService.addHotel(hotel);
+        hotelDO.setRoomPicturePath(fileName);
+        // hotelDO.setRoomPicturePath(resourceLoader.getResource("file:" + path + fileName));
+        hotelService.addHotel(hotelDO);
         return 1;
     }
 

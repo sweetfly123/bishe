@@ -22,9 +22,8 @@
 <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
 
 <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
-<script src="../assets/js/html5shiv.min.js"></script>
-<script src="../assets/js/respond.min.js"></script>
 <script src="../assets/js/jquery.2.1.1.min.js"></script>
+<script src="../assets/js/bootbox.min.js"></script>
 <script>
     $(function () {
         var token = localStorage.getItem("token");
@@ -59,9 +58,9 @@
                         "<div class=\"col-md-2\">" + data[i].roomPrice + "</div>" +
                         "<div class=\"col-md-2\">" + booked + "</div>" +
                         "<div class=\"col-md-2\">" +
-                        "<button onclick=\"hotelEdit("+data[i].roomId+")\" type=\"button\" class=\"glyphicon glyphicon-edit btn-xs btn-primary\" style=\"border: none;\">" +
+                        "<button onclick=\"hotelEdit(" + data[i].roomId + ")\" type=\"button\" class=\"glyphicon glyphicon-edit btn-xs btn-primary\" style=\"border: none;\">" +
                         "</button>&nbsp;" +
-                        "<button onclick=\"hotelDelete("+data.roomId+")\" type=\"button\" class=\"glyphicon glyphicon-trash btn-xs btn-danger\" style=\"border: none;\">" +
+                        "<button onclick=\"hotelDelete(" + data.roomId + ")\" type=\"button\" class=\"glyphicon glyphicon-trash btn-xs btn-danger\" style=\"border: none;\">" +
                         "</button></div>" +
                         "</div>";
                     $("#roomList").append(context);
@@ -69,7 +68,22 @@
                 }
             }
         });
-    })
+    });
+
+    function hotelEdit(roomId) {
+        window.location.href = "editRoom.html?roomId=" + roomId;
+    }
+
+    function hotelDelete(roomId) {
+        bootbox.alert({
+                size: "small",
+                title: "Your Title",
+                message: "Your message here…",
+                callback: function () { /* your callback code */
+                }
+            }
+        )
+    }
 </script>
 <style>
     td {
@@ -87,16 +101,24 @@
         <div class="col-md-2">价格</div>
         <div class="col-md-2">是否预订</div>
         <div class="col-md-2">操作</div>
-<!--        <button type="button" class="glyphicon glyphicon-edit btn-xs btn-primary" style="border: none;">
-        </button>&nbsp;
-        <button type="button" class="glyphicon glyphicon-trash btn-xs btn-danger" style="border: none;">
-        </button>-->
+        <!--        <button type="button" class="glyphicon glyphicon-edit btn-xs btn-primary" style="border: none;">
+                </button>&nbsp;
+                <button type="button" class="glyphicon glyphicon-trash btn-xs btn-danger" style="border: none;">
+                </button>-->
     </div>
     <div style="height: 70px;text-align: center;line-height: 70px;border-bottom:1px solid #000;">
         <div class="col-md-2" style="border-right:1px solid #000;">单人</div>
         <div class="col-md-2"><img style="width: 60px;height: 60px;"
                                    src="http://localhost:8002/hotel/resources/u=1208544201,1064095414&fm=72.jpg"></div>
         <div class="col-md-2">120</div>
+        <div class="col-md-2">
+            <button onclick="hotelEdit()" type="button" class="glyphicon glyphicon-edit btn-xs btn-primary"
+                    style="border: none;">
+            </button>&nbsp;
+            <button onclick=hotelDelete("") type="button" class="glyphicon glyphicon-trash btn-xs btn-danger"
+                    style="border: none;">
+            </button>
+        </div>
     </div>
 </table>
 </body>

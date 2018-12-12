@@ -3,14 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.lyf.hotelserver.dao.HotelDao">
-    <select id="getHotelByHotelId" resultMap="hotel" parameterType="java.lang.String">
+    <select id="getHotelByHotelId" resultMap="hotelDO" parameterType="java.lang.String">
         SELECT
          room_id,room_type,room_price,room_picture_path,booked,user_id
         FROM table_room h
         where
           h.roomId = #{hotelId}
     </select>
-    <resultMap id="hotel" type="cn.lyf.hotelserver.entity.Hotel" autoMapping="true">
+    <resultMap id="hotelDO" type="cn.lyf.hotelserver.entity.HotelDO" autoMapping="true">
         <id column="room_id" property="roomId"/>
         <result column="room_type" property="roomType"/>
         <result column="room_price" property="roomPrice"/>
@@ -18,23 +18,13 @@
         <result column="booked" property="booked"/>
         <result column="user_id" property="userId"/>
     </resultMap>
-    <!--<resultMap type="com.foo.easybuy.pojo.Order" id="orderAndDetailsMap" autoMapping="true">
-        <id column="orderId" property="id"/>
-        <collection property="orderDetails" ofType="com.foo.easybuy.pojo.OrderDetail" autoMapping="true">
-            <id column="orderDetailId" property="id"/>
-            <result column="orderDetailCost" property="cost"/>
-            <association property="product" javaType="com.foo.easybuy.pojo.Product" autoMapping="true">
-                <id column="productId" property="id"/>
-            </association>
-        </collection>
-    </resultMap>-->
-    <select id="findAllHotels" resultMap="hotel">
+    <select id="findAllHotels" resultMap="hotelDO">
        SELECT
          room_id,room_type,room_price,room_picture_path,booked,user_id
         FROM table_room h
     </select>
 
-    <select id="getHotelByUserName" resultMap="hotel" parameterType="java.lang.String">
+    <select id="getHotelByUserName" resultMap="hotelDO" parameterType="java.lang.String">
         SELECT
          room_id,room_type,room_price,room_picture_path,booked,u.user_id
         FROM table_room h,table_user u

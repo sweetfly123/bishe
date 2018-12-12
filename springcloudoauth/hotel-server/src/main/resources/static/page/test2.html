@@ -11,8 +11,20 @@
     <title>首页</title>
     
   </head>
-  
+  <script src="../assets/js/jquery.2.1.1.min.js"></script>
+  <script src="../assets/js/bootbox.min.js"></script>
+  <script>
+	  function ggg() {
+          bootbox.alert({
+              size: "small",
+              title: "Your Title",
+              message: "Your message here…",
+              callback: function(){ /* your callback code */ }
+          })
+      }
+
+  </script>
   <body>
-	测试2
+	<button type="button"value="sdf" onclick="ggg()"></button>
   </body>
 </html>

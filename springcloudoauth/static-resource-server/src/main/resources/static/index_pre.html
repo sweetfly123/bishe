@@ -96,7 +96,7 @@
     function booking(roomId) {
         var token = window.sessionStorage.getItem("token");
         $.ajax({
-            url: "http://localhost:8002/hotel/hotel/booking",
+            url: "http://localhost:8002/hotel/hotels/booking",
             type: "GET",
             async: false,
             data: {"roomId": roomId,"userId":currentUserId},
@@ -129,7 +129,7 @@
         var token = window.sessionStorage.getItem("token");
         var userName = window.sessionStorage.getItem("userName");
         $.ajax({
-            url: "http://localhost:8002/hotel/hotel/getHotelByUserName/"+userName,
+            url: "http://localhost:8002/hotelDO/hotelDO/getHotelByUserName/"+userName,
             type: "GET",
             async: false,
             beforeSend: function (e) {
