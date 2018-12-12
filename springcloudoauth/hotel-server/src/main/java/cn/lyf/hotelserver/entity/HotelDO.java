@@ -40,4 +40,8 @@ public class HotelDO {
      订房用户id
      */
     private String userId;
+    /**
+     住宿人数
+     */
+    private String guests;
 }

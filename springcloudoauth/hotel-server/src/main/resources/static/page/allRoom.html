@@ -21,12 +21,20 @@
 <link rel="stylesheet" href="../assets/css/ace-part2.min.css"/>
 <link rel="stylesheet" href="../assets/css/ace-rtl.min.css"/>
 
+<!--layerui-->
+<link rel="stylesheet" href="../layerui/css/layui.css">
+<script src="../layerui/layui.js"></script>
+
 <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
+<script src="../assets/js/html5shiv.min.js"></script>
+<script src="../assets/js/respond.min.js"></script>
 <script src="../assets/js/jquery.2.1.1.min.js"></script>
-<script src="../assets/js/bootbox.min.js"></script>
+<style>
+    .layui-layer-lan1 .layui-layer-title{background:#33aecc; color:#fff; border: none;}
+</style>
 <script>
+    var token = localStorage.getItem("token");
     $(function () {
-        var token = localStorage.getItem("token");
         $.ajax({
             url: "http://localhost:8002/hotel/hotels/hotel",
             type: "GET",
@@ -60,7 +68,7 @@
                         "<div class=\"col-md-2\">" +
                         "<button onclick=\"hotelEdit(" + data[i].roomId + ")\" type=\"button\" class=\"glyphicon glyphicon-edit btn-xs btn-primary\" style=\"border: none;\">" +
                         "</button>&nbsp;" +
-                        "<button onclick=\"hotelDelete(" + data.roomId + ")\" type=\"button\" class=\"glyphicon glyphicon-trash btn-xs btn-danger\" style=\"border: none;\">" +
+                        "<button onclick=\"hotelDelete(" + data[i].roomId + ")\" type=\"button\" class=\"glyphicon glyphicon-trash btn-xs btn-danger\" style=\"border: none;\">" +
                         "</button></div>" +
                         "</div>";
                     $("#roomList").append(context);
@@ -71,21 +79,45 @@
     });
 
     function hotelEdit(roomId) {
-        window.location.href = "editRoom.html?roomId=" + roomId;
+        window.location.href = "http://localhost:8002/hotel/resources/page/editRoom.html?roomId=" + roomId;
     }
-
     function hotelDelete(roomId) {
-        bootbox.alert({
-                size: "small",
-                title: "Your Title",
-                message: "Your message here…",
-                callback: function () { /* your callback code */
-                }
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer
+                , form = layui.form;
+            layer.open({
+                title: '确定删除该房间信息？',
+                offset: '150px',
+//                background: '#33aecc',
+//                style: 'background: rgba(216,100,125,0.9); color:#fff; border:none;',
+                skin: 'layui-layer-lan1',
+                content: '确定',
+                btn: ['确定','取消'],
+                yes: function (index, layero) {
+
+                    $.ajax({
+                        url: "http://localhost:8002/hotel/hotels/hotel/room/"+roomId,
+                        type: "PUT",
+                        async: false,
+                        dataType: "json",
+                        beforeSend: function (e) {
+                            e.setRequestHeader("Authorization", "bearer " + token);
+                        },
+                        success: function (data) {
+                            alert(data);
+                        }
+                    });
+                },
+
+                cancel: function(){
+                //右上角关闭回调
             }
-        )
+            });
+        });
     }
 </script>
 <style>
+
     td {
         height: 50px;
         text-align: center;

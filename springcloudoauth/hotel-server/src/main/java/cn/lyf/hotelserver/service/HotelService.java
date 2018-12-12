@@ -15,10 +15,10 @@ import java.util.List;
 public interface HotelService {
     /**
      * 通过房间号查询
-     * @param hotelId
+     * @param roomId
      * @return
      */
-    HotelDO getHotelByHotelId(String hotelId);
+    HotelDO getHotelByHotelId(String roomId);
     /**
      *  查询所有房间信息
      * @return
@@ -38,9 +38,14 @@ public interface HotelService {
     int addHotel(HotelDO hotelDO);
     /**
      * 更新房间信息
-     * @param roomId
-     * @param userId
+     * @param hotelDO
      * @return
      */
-    int updateHotel(String userId, String roomId);
+    int updateHotel(HotelDO hotelDO);
+    /**
+     * 逻辑删除房间
+     * @param roomId
+     * @return
+     */
+    int deleteHotel(String roomId);
 }

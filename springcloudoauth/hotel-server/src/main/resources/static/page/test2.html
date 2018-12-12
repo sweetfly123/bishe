@@ -1,30 +1,63 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-  <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-	<meta name="renderer" content="webkit|ie-comp|ie-stand">
-	<meta name="keywords" content="scclui框架">
-	<meta name="description" content="scclui为轻量级的网站后台管理系统模版。">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>首页</title>
-    
-  </head>
-  <script src="../assets/js/jquery.2.1.1.min.js"></script>
-  <script src="../assets/js/bootbox.min.js"></script>
-  <script>
-	  function ggg() {
-          bootbox.alert({
-              size: "small",
-              title: "Your Title",
-              message: "Your message here…",
-              callback: function(){ /* your callback code */ }
-          })
-      }
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+    <script>
+        /**
+         * 显示选择上传的图片略缩图
+         * 当选择了图片文件时触发这个方法
+         */
+        function previewFile() {
+            // 通过标签选择器获取HTML元素
+            var preview = document.querySelector('img');
+            var file = document.querySelector('input[type=file]').files[0];
+            // Js内置文件流
+            var reader = new FileReader();
 
-  </script>
-  <body>
-	<button type="button"value="sdf" onclick="ggg()"></button>
-  </body>
+            // 更新img标签的src属性为图片的本地路径，就可以显示了
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            // 图片文件不空就显示
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                // 图片文件是空的
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>修改个人信息</h2>
+<form action="/shop/updateUserinfo" enctype="multipart/form-data" method="post">
+    <table>
+        <tr>
+            <td>昵称：</td>
+            <td><input type="text" name="username"/></td>
+        </tr>
+        <tr>
+            <td>收货手机号:</td>
+            <td><input type="text" name="contactPhone"/></td>
+        </tr>
+        <tr>
+            <td>收货地址:</td>
+            <td><input type="text" name="contactAddress"/></td>
+        </tr>
+        <tr>
+            <td>请选择头像:</td>
+            <td><input type="file" name="image" onchange="previewFile()"/></td>
+        </tr>
+        <tr>
+            <img src="" height="100" width="200" alt="这是略缩图..."/>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="提交"/></td>
+            <td><input type="reset" name="reset" value="重置"/></td>
+        </tr>
+    </table>
+</form>
+</body>
 </html>

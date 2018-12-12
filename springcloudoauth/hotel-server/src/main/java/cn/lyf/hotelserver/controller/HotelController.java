@@ -34,12 +34,12 @@ public class HotelController {
     /**
      * 通过房间号查询
      *
-     * @param hotelId
+     * @param roomId
      * @return
      */
-    @RequestMapping(value = "/hotel/{hotelId}", method = RequestMethod.GET)
-    public HotelDO getHotelByHotelId(@PathVariable("hotelId") String hotelId) {
-        HotelDO hotelDO = hotelService.getHotelByHotelId(hotelId);
+    @RequestMapping(value = "/hotel/{roomId}", method = RequestMethod.GET)
+    public HotelDO getHotelByHotelId(@PathVariable("roomId") String roomId) {
+        HotelDO hotelDO = hotelService.getHotelByHotelId(roomId);
         return hotelDO;
     }
 
@@ -99,6 +99,30 @@ public class HotelController {
     }
 
     /**
+     * 修改房间
+     *
+     * @param file
+     * @param hotelDO
+     * @return
+     */
+    @RequestMapping(value = "/hotel/modify", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('admin')")
+    public int updateHotel(MultipartFile file, HotelDO hotelDO) {
+        String msg = "";
+        if (file != null) {
+            if (FileUtils.upload(file, path, file.getOriginalFilename())) {
+                msg = "上传成功！";
+            } else {
+                msg = "上传失败！";
+            }
+            String fileName = file.getOriginalFilename();
+            hotelDO.setRoomPicturePath(fileName);
+        }
+        hotelService.updateHotel(hotelDO);
+        return 1;
+    }
+
+    /**
      * @param userId
      * @method: bookHotel
      * @Param: * @param roomId
@@ -110,7 +134,26 @@ public class HotelController {
      */
     @RequestMapping(value = "/hotel/room/{roomId}/user/{userId}", method = RequestMethod.PUT)
     public int bookHotel(@PathVariable("roomId") String roomId, @PathVariable("userId") String userId) {
-        int result = hotelService.updateHotel(userId, roomId);
+        HotelDO hotelDO = new HotelDO();
+        hotelDO.setUserId(userId);
+        hotelDO.setRoomId(roomId);
+        hotelDO.setBooked(true);
+        int result = hotelService.updateHotel(hotelDO);
+        return result;
+    }
+
+    /**
+     * @method: deleteHotel
+     * @Param: * @param roomId
+     * @Description: 逻辑删除房间
+     * @author: DIC.lyf
+     * @date: 2018/12/12 17:37
+     * @Return: int
+     * @version: V1.0
+     */
+    @RequestMapping(value = "/hotel/room/{roomId}", method = RequestMethod.PUT)
+    public int deleteHotel(@PathVariable("roomId") String roomId) {
+        int result = hotelService.deleteHotel(roomId);
         return result;
     }
 

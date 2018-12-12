@@ -8,7 +8,7 @@
          room_id,room_type,room_price,room_picture_path,booked,user_id
         FROM table_room h
         where
-          h.roomId = #{hotelId}
+          h.room_id = #{hotelId}
     </select>
     <resultMap id="hotelDO" type="cn.lyf.hotelserver.entity.HotelDO" autoMapping="true">
         <id column="room_id" property="roomId"/>
@@ -38,6 +38,21 @@
     </insert>
 
     <update id="updateHotel">
-        UPDATE table_room set user_id = #{userId},booked = #{booked} where room_id = #{roomId}
+        UPDATE table_room
+        <set>
+            <if test="roomType != null">room_type = #{roomType},</if>
+            <if test="roomPrice != null">room_price = #{roomPrice},</if>
+            <if test="roomPicturePath != null">room_picture_path = #{roomPicturePath},</if>
+            <if test="booked != null">booked = #{booked},</if>
+            <if test="userId != null">user_id = #{userId}</if>
+        </set>
+        where room_id = #{roomId}
+    </update>
+    <update id="deleteHotel" parameterType="java.lang.String">
+        UPDATE table_room
+        <set>
+            <if test="roomId != null">status = '1'</if>
+        </set>
+        where room_id = #{roomId}
     </update>
 </mapper>

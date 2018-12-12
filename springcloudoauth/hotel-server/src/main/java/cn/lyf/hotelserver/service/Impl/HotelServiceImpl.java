@@ -22,8 +22,8 @@ public class HotelServiceImpl implements HotelService {
     private HotelDao hotelDao;
 
     @Override
-    public HotelDO getHotelByHotelId(String hotelId) {
-        return hotelDao.getHotelByHotelId(hotelId);
+    public HotelDO getHotelByHotelId(String roomId) {
+        return hotelDao.getHotelByHotelId(roomId);
     }
 
     @Override
@@ -42,11 +42,13 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public int updateHotel(String userId, String roomId) {
-        HotelDO hotelDO = new HotelDO();
-        hotelDO.setUserId(userId);
-        hotelDO.setRoomId(roomId);
-        hotelDO.setBooked(true);
+    public int updateHotel(HotelDO hotelDO) {
         return hotelDao.updateHotel(hotelDO);
     }
+
+    @Override
+    public int deleteHotel(String roomId) {
+        return hotelDao.deleteHotel(roomId);
+    }
+
 }
