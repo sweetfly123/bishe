@@ -22,11 +22,11 @@ public class UserController {
 
     @Resource
     private UserService userService;
-
+/*
     @GetMapping("/user")
     public Principal user(Principal user) {
         return user;
-    }
+    }*/
 
     /**
      * @method register

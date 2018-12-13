@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 /**
  * @method: HotelServiceImpl
  * @Description: 酒店业务实现类
@@ -29,7 +30,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public List<HotelDO> findAllHotels() {
         return hotelDao.findAllHotels();
-}
+    }
 
     @Override
     public List<HotelDO> getHotelByUserName(String userName) {
@@ -49,6 +50,11 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public int deleteHotel(String roomId) {
         return hotelDao.deleteHotel(roomId);
+    }
+
+    @Override
+    public HotelDO getHotelOrderInfoByHotelId(String roomId) {
+        return hotelDao.getHotelOrderInfoByHotelId(roomId);
     }
 
 }

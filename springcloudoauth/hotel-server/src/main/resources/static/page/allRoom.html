@@ -4,9 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="keywords" content="scclui框架">
-    <meta name="description" content="scclui为轻量级的网站后台管理系统模版。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <title>房间总览</title>
@@ -55,7 +52,7 @@
                         type = "双人";
                     }
                     if (data[i].booked == true) {
-                        booked = "已预订";
+                        booked = "已预订|<a data-toggle=\"modal\" onclick=\"checkdetails("+data[i].roomId+")\" data-target=\"#details\" id=\"check\" title=\"查看详情\">查看</a>";
                     } else {
                         booked = "空房";
                     }
@@ -86,12 +83,12 @@
             var layer = layui.layer
                 , form = layui.form;
             layer.open({
-                title: '确定删除该房间信息？',
+                title: '提示',
                 offset: '150px',
 //                background: '#33aecc',
 //                style: 'background: rgba(216,100,125,0.9); color:#fff; border:none;',
                 skin: 'layui-layer-lan1',
-                content: '确定',
+                content: '确定删除该房间信息？',
                 btn: ['确定','取消'],
                 yes: function (index, layero) {
 
@@ -104,7 +101,16 @@
                             e.setRequestHeader("Authorization", "bearer " + token);
                         },
                         success: function (data) {
-                            alert(data);
+                            layer.open({
+                                title: '提示',
+                                offset: '150px',
+                                skin: 'layui-layer-lan1',
+                                content: '删除成功',
+                                btn: ['确定'],
+                                yes: function (index, layero) {
+                                    window.location.href = "http://localhost:8002/hotel/resources/page/allRoom.html";
+                                }
+                               });
                         }
                     });
                 },
@@ -114,6 +120,24 @@
             }
             });
         });
+    }
+    function checkdetails(roomId) {
+        $.ajax({
+            url: "http://localhost:8002/hotel/hotels/hotel/order/"+roomId,
+            type: "GET",
+            async: false,
+            dataType: "json",
+            beforeSend: function (e) {
+                e.setRequestHeader("Authorization", "bearer " + token);
+            },
+            success: function (data) {
+                $("#booker").attr("value",data.userName);
+                $("#dialog-roomId").attr("value",data.roomId);
+                $("#dialog-roomType").val(data.roomType);
+                $("#dialog-roomPrice").val(data.roomPrice);
+                $("#dialog-number").val(data.guests);
+            }
+        })
     }
 </script>
 <style>
@@ -140,6 +164,7 @@
     </div>
     <div style="height: 70px;text-align: center;line-height: 70px;border-bottom:1px solid #000;">
         <div class="col-md-2" style="border-right:1px solid #000;">单人</div>
+        <a data-toggle="modal" data-target="#details" id="check" title="查看详情">查看</a>
         <div class="col-md-2"><img style="width: 60px;height: 60px;"
                                    src="http://localhost:8002/hotel/resources/u=1208544201,1064095414&fm=72.jpg"></div>
         <div class="col-md-2">120</div>
@@ -151,7 +176,43 @@
                     style="border: none;">
             </button>
         </div>
+        <a data-toggle="modal" data-target="#details" id="sign-in" class="login" title="Sign In">Sign In</a>
     </div>
 </table>
+<div class="modal fade" id="details" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" style="width:400px; height:auto;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>住宿详情</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>预订人:<span id="booker"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>房间号:<span id="dialog-roomId"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>房间类型:<span id="dialog-roomType"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>价格:<span id="dialog-roomPrice"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>住宿人数:<span id="dialog-number"></span></label>
+                    </div>
+                    <div class="form-group">
+                        <label>日期:<span id="dialog-date"></span></label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

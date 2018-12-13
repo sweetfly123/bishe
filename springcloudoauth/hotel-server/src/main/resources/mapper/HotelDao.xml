@@ -6,9 +6,16 @@
     <select id="getHotelByHotelId" resultMap="hotelDO" parameterType="java.lang.String">
         SELECT
          room_id,room_type,room_price,room_picture_path,booked,user_id
-        FROM table_room h
+        FROM table_room tr
         where
-          h.room_id = #{hotelId}
+          tr.room_id = #{roomId}
+    </select>
+    <select id="getHotelOrderInfoByHotelId" resultMap="hotelDO" parameterType="java.lang.String">
+        SELECT
+        room_id,room_type,room_price,room_picture_path,booked,user_id,user_name
+        FROM table_room tr,table_user tu
+        where
+        tr.user_id = tu.user_id AND tr.room_id = #{roomId}
     </select>
     <resultMap id="hotelDO" type="cn.lyf.hotelserver.entity.HotelDO" autoMapping="true">
         <id column="room_id" property="roomId"/>
@@ -17,11 +24,14 @@
         <result column="room_picture_path" property="roomPicturePath"/>
         <result column="booked" property="booked"/>
         <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
     </resultMap>
+
     <select id="findAllHotels" resultMap="hotelDO">
        SELECT
          room_id,room_type,room_price,room_picture_path,booked,user_id
-        FROM table_room h
+        FROM table_room
+        WHERE status = '0'
     </select>
 
     <select id="getHotelByUserName" resultMap="hotelDO" parameterType="java.lang.String">

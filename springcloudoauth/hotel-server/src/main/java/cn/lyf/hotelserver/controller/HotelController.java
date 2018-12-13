@@ -156,5 +156,15 @@ public class HotelController {
         int result = hotelService.deleteHotel(roomId);
         return result;
     }
-
+    /**
+     * 通过房间号查询预订详情
+     *
+     * @param roomId
+     * @return
+     */
+    @RequestMapping(value = "/hotel/order/{roomId}", method = RequestMethod.GET)
+    public HotelDO getHotelOrderInfoByHotelId(@PathVariable("roomId") String roomId) {
+        HotelDO hotelDO = hotelService.getHotelByHotelId(roomId);
+        return hotelDO;
+    }
 }

@@ -44,4 +44,8 @@ public class HotelDO {
      住宿人数
      */
     private String guests;
+    /**
+     订房用户名
+     */
+    private String userName;
 }

@@ -48,4 +48,10 @@ public interface HotelService {
      * @return
      */
     int deleteHotel(String roomId);
+    /**
+     * 通过房间号查询订房用户详情
+     * @param roomId
+     * @return
+     */
+    HotelDO getHotelOrderInfoByHotelId(String roomId);
 }
