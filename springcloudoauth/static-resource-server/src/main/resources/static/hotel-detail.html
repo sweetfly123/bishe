@@ -37,15 +37,33 @@
                 result = url.substr(url.indexOf("=") + 1);
             }
             roomId = result;
+
+            var token = window.sessionStorage.getItem("token");
+            var book = false;
+            $.ajax({
+                url: "http://localhost:8002/hotel/hotels/hotel/" + roomId,
+                type: "GET",
+                async: false,
+                dataType: "json",
+                beforeSend: function (e) {
+                    e.setRequestHeader("Authorization", "bearer " + token);
+                },
+                success: function (data) {
+                    $("#desc").text(data.roomDescribe);
+                    $("#price").text("￥"+data.roomPrice);
+                }
+            });
         });
 
         function booking() {
             var token = window.sessionStorage.getItem("token");
             var currentUserId = window.localStorage.getItem("currentUserId");
+            var guestNumber = $("#guests").val();
             $.ajax({
-                url: "http://localhost:8002/hotel/hotels/hotel/roomId/"+roomId+"/userId/"+currentUserId,
+                url: "http://localhost:8002/hotel/hotels/hotel/room/" + roomId + "/user/" + currentUserId,
                 type: "PUT",
                 async: false,
+                data: {"startDate": startTime, "endDate": endTime, "guestNumber": guestNumber},
                 beforeSend: function (e) {
                     e.setRequestHeader("Authorization", "bearer " + token);
                 },
@@ -69,7 +87,8 @@
 <div id="page">
 
     <header id="header" class="header menu_fixed">
-
+        <nav id="menu" class="main-menu">
+        </nav>
     </header>
     <!-- /header -->
 
@@ -104,9 +123,7 @@
                     <div class="col-lg-8">
                         <section id="description">
                             <h2>房间介绍</h2>
-                            <!--<p>Per consequat adolescens ex, cu nibh commune <strong>temporibus vim</strong>, ad sumo viris eloquentiam sed. Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.</p>
-                            <p>Cum et probo menandri. Officiis consulatu pro et, ne sea sale invidunt, sed ut sint <strong>blandit</strong> efficiendi. Atomorum explicari eu qui, est enim quaerendum te. Quo harum viris id. Per ne quando dolore evertitur, pro ad cibo commune.</p>-->
-                            <p>
+                            <p id="desc">
                                 上海新词大酒店： 上海新词大酒店是接待外宾、华侨、港澳台胞和国内会晤、旅游散客及团体的三星级酒店。
                                 酒店外观宏伟，气势豪华，环境优雅。拥有各类套房、双人房、大床房共115间；风格迥异的宴会厅和包房可
                                 同时容纳近千人用餐。酒店同时附设大型桑拿中心，夜总会及KTV包房、棋牌室、美容中心、购物中心、桌
@@ -156,27 +173,6 @@
                                 <!-- /row -->
                             </div>
                             <!-- /rom_type -->
-                            <div class="room_type gray">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="img/gallery/hotel_list_2.jpg" class="img-fluid" alt="">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h4>Double Room</h4>
-                                        <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis,
-                                            tamquam vulputate pertinacia eum at.</p>
-                                        <ul class="hotel_facilities">
-                                            <li><img src="img/hotel_facilites_icon_3.svg" alt="">Double Bed</li>
-                                            <li><img src="img/hotel_facilites_icon_4.svg" alt="">Free Wifi</li>
-                                            <li><img src="img/hotel_facilites_icon_6.svg" alt="">Bathtub</li>
-                                            <li><img src="img/hotel_facilites_icon_7.svg" alt="">Air Condition</li>
-                                            <li><img src="img/hotel_facilites_icon_8.svg" alt="">Hairdryer</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /row -->
-                            </div>
-                            <!-- /rom_type -->
                             <div class="room_type last">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -200,14 +196,14 @@
                             </div>
                             <!-- /rom_type -->
                             <hr>
-                            <h3>Location</h3>
-                            <div id="map" class="map map_single add_bottom_30"></div>
+                            <!--<h3>Location</h3>-->
+                            <!--<div id="map" class="map map_single add_bottom_30"></div>-->
                             <!-- End Map -->
                         </section>
                         <!-- /section -->
 
                         <section id="reviews">
-                            <h2>Reviews</h2>
+                            <h2>评论</h2>
                             <div class="reviews-container">
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -403,13 +399,35 @@
                     <aside class="col-lg-4" id="sidebar">
                         <div class="box_detail booking">
                             <div class="price">
-                                <span>45$ <small>person</small></span>
-                                <div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+                                <span id="price"> </span><small>/晚</small>
+                                <div class="score"><span>Good<em>350 人住过</em></span><strong>7.0</strong></div>
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control form_datetime" type="text" name="dates" placeholder="When..">
+                                <input id="" class="form-control" type="text" name="dates"
+                                       placeholder="When..">
                                 <i class="icon_calendar"></i>
+                            </div>
+                            <div id="panel-dropdown" class="panel-dropdown">
+                                <a href="javascript:void(0);">Guests <span class="qtyTotal">1</span></a>
+                                <div class="panel-dropdown-content right">
+                                    <div class="qtyButtons">
+                                        <label>Adults</label>
+                                        <input id="guests" type="text" name="qtyInput" value="1">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <div class="custom-select-form">
+                                    <select class="wide">
+                                        <option>Room Type</option>
+                                        <option>Single Room</option>
+                                        <option>Double Room</option>
+                                        <option>Suite Room</option>
+                                    </select>
+                                </div>
                             </div>
                             <a href="#" onclick="booking()" class=" add_top_30 btn_1 full-width purchase">订购</a>
                             <a href="wishlist.html" class="btn_1 full-width outline wishlist"><i class="icon_heart"></i>
@@ -497,6 +515,8 @@
 
 <!-- DATEPICKER  -->
 <script>
+    var startTime;
+    var endTime;
     $(function () {
         $('input[name="dates"]').daterangepicker({
             autoUpdateInput: false,
@@ -506,7 +526,9 @@
             }
         });
         $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
+            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' > ' + picker.endDate.format('YYYY-MM-DD'));
+            startTime = picker.startDate.format('YYYY-MM-DD');
+            endTime = picker.endDate.format('YYYY-MM-DD');
         });
         $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
             $(this).val('');

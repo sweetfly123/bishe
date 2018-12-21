@@ -23,9 +23,12 @@
 <script src="../layerui/layui.js"></script>
 
 <link rel="stylesheet" href="../assets/css/ace-ie.min.css"/>
+<script src="../assets/js/bootstrap.min.js"></script>
 <script src="../assets/js/html5shiv.min.js"></script>
 <script src="../assets/js/respond.min.js"></script>
 <script src="../assets/js/jquery.2.1.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
     .layui-layer-lan1 .layui-layer-title{background:#33aecc; color:#fff; border: none;}
 </style>
@@ -51,8 +54,8 @@
                     } else {
                         type = "双人";
                     }
-                    if (data[i].booked == true) {
-                        booked = "已预订|<a data-toggle=\"modal\" onclick=\"checkdetails("+data[i].roomId+")\" data-target=\"#details\" id=\"check\" title=\"查看详情\">查看</a>";
+                    if (data[i].booked == true) {//
+                        booked = "已预订|<a href=\"#\" data-toggle=\"modal\" onclick=\"checkdetails("+data[i].roomId+")\" data-target=\"#details\" id=\"check\" title=\"查看详情\">查看</a>";
                     } else {
                         booked = "空房";
                     }
@@ -131,11 +134,11 @@
                 e.setRequestHeader("Authorization", "bearer " + token);
             },
             success: function (data) {
-                $("#booker").attr("value",data.userName);
-                $("#dialog-roomId").attr("value",data.roomId);
-                $("#dialog-roomType").val(data.roomType);
-                $("#dialog-roomPrice").val(data.roomPrice);
-                $("#dialog-number").val(data.guests);
+                $("#booker").text(data.userName);
+                $("#dialog-roomId").text(data.roomId);
+                $("#dialog-roomType").text(data.roomType);
+                $("#dialog-roomPrice").text(data.roomPrice);
+                $("#dialog-number").text(data.guests);
             }
         })
     }
@@ -164,7 +167,7 @@
     </div>
     <div style="height: 70px;text-align: center;line-height: 70px;border-bottom:1px solid #000;">
         <div class="col-md-2" style="border-right:1px solid #000;">单人</div>
-        <a data-toggle="modal" data-target="#details" id="check" title="查看详情">查看</a>
+        <a href="#" data-toggle="modal" data-target="#details" id="check" title="查看详情">查看</a>
         <div class="col-md-2"><img style="width: 60px;height: 60px;"
                                    src="http://localhost:8002/hotel/resources/u=1208544201,1064095414&fm=72.jpg"></div>
         <div class="col-md-2">120</div>
@@ -187,29 +190,28 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
-                        <label>预订人:<span id="booker"></span></label>
+                    <div class="form-group" style="padding-left: 20px;">
+                        <label>预订人:<span id="booker" style="margin-left: 20px;"></span></label>
                     </div>
-                    <div class="form-group">
-                        <label>房间号:<span id="dialog-roomId"></span></label>
+                    <div class="form-group" style="padding-left: 20px;">
+                        <label>房间号:<span id="dialog-roomId" style="margin-left: 20px;"></span></label>
                     </div>
-                    <div class="form-group">
-                        <label>房间类型:<span id="dialog-roomType"></span></label>
+                    <div class="form-group" style="padding-left: 20px;">
+                        <label>房间类型:<span id="dialog-roomType" style="margin-left: 20px;"></span></label>
                     </div>
-                    <div class="form-group">
-                        <label>价格:<span id="dialog-roomPrice"></span></label>
+                    <div class="form-group" style="padding-left: 20px;">
+                        <label>价格:<span id="dialog-roomPrice" style="margin-left: 20px;"></span></label>
                     </div>
-                    <div class="form-group">
-                        <label>住宿人数:<span id="dialog-number"></span></label>
+                    <div class="form-group" style="padding-left: 20px;">
+                        <label>住宿人数:<span id="dialog-number" style="margin-left: 20px;"></span></label>
                     </div>
-                    <div class="form-group">
-                        <label>日期:<span id="dialog-date"></span></label>
+                    <div class="form-group" style="padding-left: 20px;">
+                        <label>日期:<span id="dialog-date" style="margin-left: 20px;"></span></label>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>

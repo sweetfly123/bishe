@@ -1,3 +1,8 @@
+<!-- COMMON SCRIPTS -->
+<script src="js/jquery-2.2.4.min.js"></script>
+<script>
+    $("#userLogo").attr("src","img/2_carousel.jpg");
+</script>
 <div id="preloader">
     <div data-loader="circle-side"></div>
 </div><!-- /Page Preload -->
@@ -7,19 +12,19 @@
         <img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">
     </a>
 </div>
-<ul id="top_menu">
+<!--<ul id="top_menu">
     <li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li>
     <li><a data-toggle="modal" data-target="#signLogin" id="sign-in" class="login" title="Sign In">Sign In</a></li>
     <li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
-</ul>
-<!--<ul id="top_menu">
+</ul>-->
+<ul id="top_menu">
     <li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li>
     <li>
         <div class="dropdown dropdown-user">
-            <a href="#0" class="logged" data-toggle="dropdown" title="Logged"><img src="img/avatar.jpg" alt=""></a>
+            <a href="#" class="logged" data-toggle="dropdown" title="Logged"><img id="userLogo" src="img/blog-2.jpg" alt=""></a>
             <div class="dropdown-menu">
                 <ul>
-                    <li><a href="#sign-in-dialog" id="sign-in" title="Sign In">登录</a></li>
+                    <li><a data-toggle="modal" data-target="#signLogin" id="sig1n-in">登录</a></li>
                     <li><a href="#">注销</a></li>
                     <li><a href="#">User admin</a></li>
                 </ul>
@@ -27,7 +32,7 @@
         </div>
     </li>
     <li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
-</ul>-->
+</ul>
 <!-- /top_menu -->
 <a href="#menu" class="btn_mobile">
     <div class="hamburger hamburger--spin" id="hamburger">
@@ -40,7 +45,7 @@
     <ul>
         <li><span><a href="#0">首页</a></span>
             <ul>
-                <li><a href="index_pre.html">Home version 1</a></li>
+                <li><a href="index.html">Home version 1</a></li>
                 <li><a href="index-2.html">Home version 2</a></li>
                 <li><a href="index-3.html">Home version 3</a></li>
                 <li><a href="index-4.html">Home version 4</a></li>

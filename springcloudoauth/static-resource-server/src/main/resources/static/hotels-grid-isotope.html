@@ -75,13 +75,13 @@
                         } else {
                             type = "双人";
                         }
-                        context += "<a href=\"#\" onclick='booking(" + data[i].roomId + ")'><img src=\"" + data[i].roomPicturePath + "\" class=\"img-fluid\" alt=\"\" width=\"800\" height=\"533\"><div class=\"read_more\"><span>预订</span></div></a>\n" +
-                            "<small>法国中部</small>\n" +
+                        context += "<a href=\"javascript:void(0)\" onclick='booking(" + data[i].roomId + ")'><img src=\"" + data[i].roomPicturePath + "\" class=\"img-fluid\" alt=\"\" width=\"800\" height=\"533\"><div class=\"read_more\"><span>预订</span></div></a>\n" +
+                            "<small>峰旗旅游</small>\n" +
                             "</figure>" +
                             "<div class=\"wrapper\">\n" +
                             "<div class=\"cat_star\"><i class=\"icon_star\"></i><i class=\"icon_star\"></i><i class=\"icon_star\"></i><i class=\"icon_star\"></i></div>\n" +
                             "<h3><a href=\"hotelDO-detail.html\">" + type + "</a></h3>\n" +
-                            "<p style='width:280px;height:60px;line-height:30px;text-overflow:ellipsis;overflow:hidden;display:block;'>窗明几净 优雅舒适 富丽堂皇 宾至如归</p>\n" +
+                            "<p style='width:280px;height:60px;line-height:30px;text-overflow:ellipsis;overflow:hidden;display:block;'>"+data[i].roomDescribe+"</p>\n" +
                             "<span class=\"price\">价格 <strong>￥" + data[i].roomPrice + "</strong> /一晚</span>\n" +
                             "</div>" +
                             "<ul>\n" +
@@ -101,7 +101,25 @@
         });
 
         function booking(roomId) {
-            window.location.href = "./hotel-detail.html?roomId=" + roomId;
+            var token = window.sessionStorage.getItem("token");
+            var book = false;
+            $.ajax({
+                url: "http://localhost:8002/hotel/hotels/hotel/" + roomId,
+                type: "GET",
+                async: false,
+                dataType: "json",
+                beforeSend: function (e) {
+                    e.setRequestHeader("Authorization", "bearer " + token);
+                },
+                success: function (data) {
+                    book = data.booked;
+                }
+            });
+            if (book == true) {
+                alert("房间已被预订");
+            } else {
+                window.location.href = "./hotel-detail.html?roomId=" + roomId;
+            }
         }
 
         function addHotel() {

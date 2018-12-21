@@ -133,11 +133,14 @@ public class HotelController {
      * @version: V1.0
      */
     @RequestMapping(value = "/hotel/room/{roomId}/user/{userId}", method = RequestMethod.PUT)
-    public int bookHotel(@PathVariable("roomId") String roomId, @PathVariable("userId") String userId) {
+    public int bookHotel(@PathVariable("roomId") String roomId, @PathVariable("userId") String userId, String startDate, String endDate, String guestNumber) {
         HotelDO hotelDO = new HotelDO();
         hotelDO.setUserId(userId);
         hotelDO.setRoomId(roomId);
         hotelDO.setBooked(true);
+        hotelDO.setGuests(guestNumber);
+        hotelDO.setStartDate(startDate);
+        hotelDO.setEndDate(endDate);
         int result = hotelService.updateHotel(hotelDO);
         return result;
     }
@@ -156,6 +159,7 @@ public class HotelController {
         int result = hotelService.deleteHotel(roomId);
         return result;
     }
+
     /**
      * 通过房间号查询预订详情
      *
@@ -164,7 +168,7 @@ public class HotelController {
      */
     @RequestMapping(value = "/hotel/order/{roomId}", method = RequestMethod.GET)
     public HotelDO getHotelOrderInfoByHotelId(@PathVariable("roomId") String roomId) {
-        HotelDO hotelDO = hotelService.getHotelByHotelId(roomId);
+        HotelDO hotelDO = hotelService.getHotelOrderInfoByHotelId(roomId);
         return hotelDO;
     }
 }

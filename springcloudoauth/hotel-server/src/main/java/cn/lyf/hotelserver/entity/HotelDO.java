@@ -33,6 +33,10 @@ public class HotelDO {
      */
     private String roomPicturePath;
     /**
+     房间描述
+     */
+    private String roomDescribe;
+    /**
      是否预订
      */
     private boolean booked;
@@ -48,4 +52,12 @@ public class HotelDO {
      订房用户名
      */
     private String userName;
+    /**
+     起始时间
+     */
+    private String startDate;
+    /**
+     到期时间
+     */
+    private String endDate;
 }
