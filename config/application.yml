@@ -15,9 +15,11 @@ spring:
   zipkin:
     base-url: http://localhost:8020
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:${web.upload-path}
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:${web.upload-path},file:${web.user-logo}
 web:
   upload-path: D:/DevelopPhotos/
+web: 
+  user-logo: D/UserLogos/
 name: devddd2
 ---
 #测试环境
