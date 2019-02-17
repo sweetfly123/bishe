@@ -12,14 +12,14 @@ spring:
     url: jdbc:mysql://localhost:3306/db_hotel?useSSL=false
     username: root
     password: 123456
-  zipkin:
-    base-url: http://localhost:8020
+
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:${web.upload-path},file:${web.user-logo}
 web:
   upload-path: D:/DevelopPhotos/
   user-logo: D/UserLogos/
-name: devddd2
+  #zipkin:
+   # base-url: http://localhost:8020
 ---
 #测试环境
 spring: 
